@@ -1,6 +1,22 @@
-<p>
-  flight-profile works!
-</p>
+
+<h4 class="display-4">Flight Profiles</h4>
+<!-- <div class="row">
+  <div class="col-md">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Start date" [formControl]="startDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker ></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="col-md">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker2" placeholder="Ending date" [formControl]="endingDate">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2 ></mat-datepicker>
+    </mat-form-field>
+  </div>
+</div> -->
+
 
 <div class="example-header">
   <mat-form-field>
@@ -8,39 +24,53 @@
   </mat-form-field>
 </div>
 
+
+
 <div class="example-container mat-elevation-z8">
 
   <mat-table [dataSource]="dataSource" matSort>
 
     <!-- ID Column -->
-    <ng-container matColumnDef="id">
+    <!-- <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
-    </ng-container>
+    </ng-container> -->
 
-    <!-- Progress Column -->
+    <!-- callsign Column -->
     <ng-container matColumnDef="callsign">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> callsign </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Callsign </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.callsign}} </mat-cell>
     </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="squawk">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> squawk </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.squawk}} </mat-cell>
+    <!-- firstEnrDistance Column -->
+    <ng-container matColumnDef="firstEnrDistance">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> FirstEnrDistance </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.firstEnrDistance}} </mat-cell>
     </ng-container>
 
-    <!-- Color Column -->
-    <ng-container matColumnDef="firstEnrDistance">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> firstEnrDistance </mat-header-cell>
-      <mat-cell *matCellDef="let row" > {{row.firstEnrDistance}} </mat-cell>
+    <!-- firstEnrTime Column -->
+    <ng-container matColumnDef="firstEnrTime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> FirstEnrTime </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.firstEnrTime}} </mat-cell>
+    </ng-container>
+
+    <!-- secondEnrDistance Column -->
+    <ng-container matColumnDef="secondEnrDistance">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> SecondEnrDistance </mat-header-cell>
+        <mat-cell *matCellDef="let row" > {{row.secondEnrDistance}} </mat-cell>
+    </ng-container>
+
+      <!-- firstEnrTime Column -->
+    <ng-container matColumnDef="secondEnrTime">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> SecondEnrTime </mat-header-cell>
+        <mat-cell *matCellDef="let row" > {{row.secondEnrTime}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="ShowDetail(row)"></mat-row>
   </mat-table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
 </div>
 
 

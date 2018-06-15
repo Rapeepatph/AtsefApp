@@ -1,0 +1,71 @@
+<div >
+    <div class="example-header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+    <div class="example-container mat-elevation-z8">
+    
+        <mat-table [dataSource]="dataSource" matSort>
+         
+          <ng-container matColumnDef="runwayHeading">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> RunwayHeading </mat-header-cell>
+            <mat-cell *matCellDef="let row" > {{row.runwayHeading}} </mat-cell>
+          </ng-container>
+      
+         
+          <ng-container matColumnDef="aircraft">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Aircraft </mat-header-cell>
+            <mat-cell *matCellDef="let row" > {{row.aircraft}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="entrySector">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> EntrySector </mat-header-cell>
+            <mat-cell *matCellDef="let row" > {{row.secondEntrySector}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="min">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Min </mat-header-cell>
+            <mat-cell *matCellDef="let row" > {{row.min}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="max">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Max </mat-header-cell>
+            <mat-cell *matCellDef="let row" > {{row.max}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="avg">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> AVG </mat-header-cell>
+            <mat-cell *matCellDef="let row" > {{row.avg}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="p20">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> P20 </mat-header-cell>
+            <mat-cell *matCellDef="let row" > {{row.p20}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="p80">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> P80 </mat-header-cell>
+            <mat-cell *matCellDef="let row" > {{row.p80}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="amount">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+              <mat-cell *matCellDef="let row" > {{row.amount}} </mat-cell>
+          </ng-container>
+      
+           
+          <ng-container matColumnDef="arrival">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Arrival </mat-header-cell>
+              <mat-cell *matCellDef="let row" > {{row.arrival}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                  <button type="button" class="btn btn-outline-primary " (click)="open(element)" >Detail</button>
+              </mat-cell>
+            </ng-container>
+
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+
+        </mat-table>
+      
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+      </div>
+</div>

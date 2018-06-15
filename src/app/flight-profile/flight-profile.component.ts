@@ -4,17 +4,47 @@ import { FlightProfileService } from '../services/flight-profile.service';
 import { FlightProfile } from './flightProfile.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FlightProfileModalComponent } from '../flight-profile-modal/flight-profile-modal.component';
+import {FormControl} from '@angular/forms';
+
+import {MomentDateAdapter} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
 
+
+//import {default as _rollupMoment} from 'moment';
+
+// export const MY_FORMATS = {
+//   parse: {
+//     dateInput: 'LL',
+//   },
+//   display: {
+//     dateInput: 'LL',
+//     monthYearLabel: 'MMM YYYY',
+//     dateA11yLabel: 'LL',
+//     monthYearA11yLabel: 'MMMM YYYY',
+//   },
+// };
 
 @Component({
   selector: 'app-flight-profile',
   templateUrl: './flight-profile.component.html',
-  styleUrls: ['./flight-profile.component.css']
+  styleUrls: ['./flight-profile.component.css'],
+  providers: [
+    // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
+    // application's root module. We provide it at the component level here, due to limitations of
+    // our example generation script.
+    // {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+
+    // {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
 })
+
+
+
 export class FlightProfileComponent {
-  displayedColumns = ['id', 'callsign', 'squawk', 'firstEnrDistance'];
+  displayedColumns = [ 'callsign', 'firstEnrDistance','firstEnrTime','secondEnrDistance','secondEnrTime'];
   dataSource: MatTableDataSource<FlightProfile>;
+  
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -29,10 +59,11 @@ export class FlightProfileComponent {
         
         this.dataSource = new MatTableDataSource<FlightProfile>(res);
         this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
+        this.dataSource.sort = this.sort;
       },
       error=>console.error('Can not get flight profile!',error.message)
     );
+    
   }
 
   /**

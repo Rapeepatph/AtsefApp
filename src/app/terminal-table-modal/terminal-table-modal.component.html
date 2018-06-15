@@ -1,0 +1,65 @@
+<div class="modal-header">
+  <div class="col-md">
+    <b>Arrival :</b><p>{{dataInput.arrival}}</p>
+    <b>From Date :</b><p>{{dataInput.startTime}}</p>
+    <b>To Date :</b><p>{{dataInput.endingTime}}</p>
+</div>
+</div>
+<div class="modal-body">
+  <div >
+    <div class="example-header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+    <div class="example-container mat-elevation-z8">
+    
+        <mat-table [dataSource]="dataSource" matSort>
+         
+          <ng-container matColumnDef="callsign">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> CallSign </mat-header-cell>
+            <mat-cell *matCellDef="let row" > {{row.callsign}} </mat-cell>
+          </ng-container>
+      
+         
+          <ng-container matColumnDef="departure">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> departure </mat-header-cell>
+            <mat-cell *matCellDef="let row" > {{row.departure}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="arrival">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> arrival </mat-header-cell>
+            <mat-cell *matCellDef="let row" > {{row.arrival}} </mat-cell>
+          </ng-container>
+         
+          <ng-container matColumnDef="Time at TMA">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Time at TMA </mat-header-cell>
+              <mat-cell *matCellDef="let row" > {{row.secondEntTime}} </mat-cell>
+          </ng-container>
+      
+           
+          <ng-container matColumnDef="Time at Arrival">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Time at Arrival </mat-header-cell>
+              <mat-cell *matCellDef="let row" > {{row.arrivalTime}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                  <button type="button" class="btn btn-outline-primary " (click)='open(element)' >Map</button>
+              </mat-cell>
+            </ng-container>
+
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+
+        </mat-table>
+      
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+      </div>
+</div>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary"  (click)="closewithButton()">Close</button>
+</div>

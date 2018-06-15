@@ -1,13 +1,49 @@
 
 <div class="modal-header">
-  <h5 class="modal-title">{{flightProfile.callsign}}</h5>
+  <h5 class="modal-title"><b>Call sign : </b>{{flightProfile.callsign}}</h5>
   <button type="button" class="close" (click)="closewithDismiss()" >
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  ID : {{flightProfile.id}}
-  CallSign : {{flightProfile.callsign}}
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><b>AccSectors : </b>{{flightProfile.accSectors}}</li>
+    <li class="list-group-item"><b>Call Sign :</b> {{flightProfile.callsign}}</li>
+    <li class="list-group-item"><b>Departure : </b>{{flightProfile.departure}}</li>
+    <li class="list-group-item"><b>DeptTma : </b>{{flightProfile.deptTma}}</li>
+    <li class="list-group-item"><b>DestTma : </b>{{flightProfile.destTma}}</li>
+    <li class="list-group-item"><b>Arrival : </b>{{flightProfile.arrival}}</li>
+    <li class="list-group-item"><b>DirectDistance : </b>{{flightProfile.directDistance}}</li>
+    <li class="list-group-item"><b>EndRadian : </b>{{flightProfile.endRadian}}</li>
+    <li class="list-group-item"><b>FirstEnrDistance : </b>{{flightProfile.firstEnrDistance}}</li>
+    <li class="list-group-item"><b>FirstEnrTime : </b>{{flightProfile.firstEnrTime}}</li>
+    <li class="list-group-item"><b>FirstEntLevel : </b>{{flightProfile.firstEntLevel}}</li>
+    <li class="list-group-item"><b>FirstEntTime : </b>{{flightProfile.firstEntTime}}</li>
+    <li class="list-group-item"><b>FirstEntX : </b>{{flightProfile.firstEntX}}</li>
+    <li class="list-group-item"><b>FirstEntY : </b>{{flightProfile.firstEntY}}</li>
+    <li class="list-group-item"><b>FirstExitLevel : </b>{{flightProfile.firstExitLevel}}</li>
+    <li class="list-group-item"><b>FirstExitTime : </b>{{flightProfile.firstExitTime}}</li>
+    <li class="list-group-item"><b>FirstExitX : </b>{{flightProfile.firstExitX}}</li>
+    <li class="list-group-item"><b>FirstExitY : </b>{{flightProfile.firstExitY}}</li>
+    <li class="list-group-item"><b>FirstLevel : </b>{{flightProfile.firstLevel}}</li>
+    <li class="list-group-item"><b>FirstTime : </b>{{flightProfile.firstTime}}</li>
+    <li class="list-group-item"><b>FirstX : </b>{{flightProfile.firstX}}</li>
+    <li class="list-group-item"><b>FirstY : </b>{{flightProfile.firstY}}</li>
+    <li class="list-group-item"><b>FlightType : </b>{{flightProfile.flightType}}</li>
+    <li class="list-group-item"><b>LastLevel : </b>{{flightProfile.lastLevel}}</li>
+    <li class="list-group-item"><b>LastTime : </b>{{flightProfile.lastTime}}</li>
+    <li class="list-group-item"><b>LastX : </b>{{flightProfile.lastX}}</li>
+    <li class="list-group-item"><b>LastY : </b>{{flightProfile.lastY}}</li>
+    <li class="list-group-item"><b>SecondEnrDistance : </b>{{flightProfile.secondEnrDistance}}</li>
+    <li class="list-group-item"><b>SecondEnrTime : </b>{{flightProfile.secondEnrTime}}</li>
+    <li class="list-group-item"><b>SecondEntLevel : </b>{{flightProfile.secondEntLevel}}</li>
+    <li class="list-group-item"><b>SecondEntTime : </b>{{flightProfile.secondEntTime}}</li>
+    <li class="list-group-item"><b>SecondEntX : </b>{{flightProfile.secondEntX}}</li>
+    <li class="list-group-item"><b>SecondEntY : </b>{{flightProfile.secondEntY}}</li>
+    <li class="list-group-item"><b>Squawk : </b>{{flightProfile.squawk}}</li>
+    <li class="list-group-item"><b>StartRadian : </b>{{flightProfile.startRadian}}</li>
+    <li class="list-group-item"><b>Waypoints : </b>{{flightProfile.waypoints}}</li>
+  </ul>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary"  (click)="closewithButton()">Close</button>
