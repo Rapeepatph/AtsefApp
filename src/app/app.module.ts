@@ -28,6 +28,7 @@ import { TerminalTableComponent } from './terminal-table/terminal-table.componen
 import { TerminalTableModalComponent } from './terminal-table-modal/terminal-table-modal.component';
 import { MapModalComponent } from './map-modal/map-modal.component';
 import { GroupProfileService } from './services/group-profile.service';
+import { ProfileTableComponent } from './group-profiles/profile-table/profile-table.component';
 
 
 
@@ -43,7 +44,8 @@ import { GroupProfileService } from './services/group-profile.service';
     TerminalEfficiencyComponent,
     TerminalTableComponent,
     TerminalTableModalComponent,
-    MapModalComponent
+    MapModalComponent,
+    ProfileTableComponent
   ],
   imports: [
     BrowserModule,

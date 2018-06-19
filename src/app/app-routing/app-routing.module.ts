@@ -7,12 +7,13 @@ import { RegistrationFormComponent } from '../account/registration-form/registra
 import { LoginFormComponent } from '../account/login-form/login-form.component';
 import { AuthGuard } from '../auth.guard';
 import { TerminalEfficiencyComponent } from '../terminal-efficiency/terminal-efficiency.component';
+import { ProfileTableComponent } from '../group-profiles/profile-table/profile-table.component';
 
 const routes:Routes=[
   {path:'flight',component:FlightProfileComponent,canActivate: [AuthGuard]},
   {path:'terminal',component:TerminalEfficiencyComponent,canActivate: [AuthGuard]},
- 
   {path:'register',component:RegistrationFormComponent},
+  {path:'groupProfile',component:ProfileTableComponent},
   {path:'login',component:LoginFormComponent},
   {path:'',redirectTo:'/flight',pathMatch:'full'}
   

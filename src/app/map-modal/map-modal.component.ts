@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import * as mapboxgl from 'mapbox-gl';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-map-modal',
   templateUrl: './map-modal.component.html',
@@ -8,9 +9,14 @@ import * as mapboxgl from 'mapbox-gl';
 })
 export class MapModalComponent implements OnInit {
   map: mapboxgl.Map;
-  constructor(private activeModal : NgbActiveModal) { }
+  myHeight = window.innerHeight-20;
+  constructor(private activeModal : NgbActiveModal
+  
+  ) { }
 
   ngOnInit() {
+    document.getElementById('map').setAttribute("style","height:"+this.myHeight+"px");
+    
     this.buildMap();
   }
   closewithButton(){
@@ -29,5 +35,9 @@ export class MapModalComponent implements OnInit {
       center:  [102.786983, 17.384628], // starting position
       bearing: 27.5 // bearing in degrees
     });
+    $('#chooseLocation').on('shown.bs.modal', function() {
+      this.map.invalidateSize();
+    });
+    
   }
 }

@@ -76,7 +76,6 @@ export class FlightProfileComponent {
   // }
 
   ShowDetail(flightProfile){
-    console.log("Flight Profile",flightProfile);
     const modalRef = this.modalService.open(FlightProfileModalComponent);
     modalRef.componentInstance.flightProfile=flightProfile;
   }

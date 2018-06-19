@@ -23,12 +23,10 @@ export class TerminalTableModalComponent implements OnInit {
   ,private modalService: NgbModal) { }
 
   ngOnInit() {
-    console.log('dataInput',this.dataInput);
     this._flightProfileService.getDetailTerminal(this.dataInput.arrival,new Date(this.dataInput.startTime).toISOString(),new Date(this.dataInput.endingTime).toISOString()
                                                   ,this.dataInput.aircraft,this.dataInput.runwayHeading,this.dataInput.secondEntrySector)
                                                   .subscribe(
                                                     res=>{
-                                                      console.log('dataDetail',res);
                                                       this.dataSource = new MatTableDataSource<terminalModalModel>(res);
     
                                                       this.dataSource.paginator = this.paginator;

@@ -33,13 +33,13 @@
          
           <ng-container matColumnDef="Time at TMA">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Time at TMA </mat-header-cell>
-              <mat-cell *matCellDef="let row" > {{row.secondEntTime}} </mat-cell>
+              <mat-cell *matCellDef="let row" > {{row.secondEntTime| date}} </mat-cell>
           </ng-container>
       
            
           <ng-container matColumnDef="Time at Arrival">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Time at Arrival </mat-header-cell>
-              <mat-cell *matCellDef="let row" > {{row.arrivalTime}} </mat-cell>
+              <mat-cell *matCellDef="let row" > {{row.arrivalTime| date}} </mat-cell>
           </ng-container>
       
           <ng-container matColumnDef="action">
@@ -63,3 +63,5 @@
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary"  (click)="closewithButton()">Close</button>
 </div>
+
+

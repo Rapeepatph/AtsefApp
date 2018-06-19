@@ -14,22 +14,60 @@ export class GroupProfileService extends BaseService {
     super();
     this.baseUrl = '/api';
   }
-  
-  postGroupProfile(name:string,dateFrom,dateTo):Observable<any>{
+  getGroupProfile():Observable<any>{
+    return this._http.get('/api/GroupProfiles')
+    .map(response =>{
+      return response;
+    })
+    .catch(this.handleError); 
+  }
+  postGroupProfile(name:string,dateFrom,dateTo,status):Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
       })
     }
-    let body = JSON.stringify({name,dateFrom,dateTo});
+    let body = JSON.stringify({name,dateFrom,dateTo,status});
     return this._http.post('/api/GroupProfiles', body,httpOptions)
       .map(res => {
-        console.log('return res',res);
         return res;
-        
-        
       })
-      .catch(this.handleError);
+      .catch(this.handleError); 
   }
+  upDateProfile(model){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    }
+    let body = JSON.stringify(model);
+    return this._http.put('/api/GroupProfiles/'+model.id,body,httpOptions)
+              .map(res=>{
+                return res;
+              }).catch(this.handleError); 
+  }
+  deleteProfile(row){
+    return this._http.delete('/api/GroupProfiles/'+row.id)
+    .map(response =>{
+      return response;
+    })
+    .catch(this.handleError);
+  }
+  
+  
+  postGroupStatistic(model):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    }
+    let body = JSON.stringify(model);
+    return this._http.post('/api/GroupStatistic',body ,httpOptions)
+      .map(res => {
+        return res;
+      }).catch(this.handleError); 
+  }
+
+  
 
 }

@@ -13,6 +13,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class TerminalTableComponent implements OnChanges {
   @Input() dataTable;
+  @Input() strtTime;
+  @Input() endingTime;
   displayedColumns = [  'runwayHeading','aircraft','entrySector','min','max','avg','p20','p80','amount','arrival','action'];
   dataSource: MatTableDataSource<TerminalTableModel>;
 
@@ -26,7 +28,7 @@ export class TerminalTableComponent implements OnChanges {
   ngOnChanges() {
     
     if(this.dataTable){
-      this.dataSource = new MatTableDataSource<TerminalTableModel>(this.dataTable.listFlightGroups);
+      this.dataSource = new MatTableDataSource<TerminalTableModel>(this.dataTable);
     
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -40,11 +42,10 @@ export class TerminalTableComponent implements OnChanges {
   }
 
   open(row) {
-    console.log('row',row);
     var output = {
       arrival:row.arrival,
-      startTime:this.dataTable.startTime,
-      endingTime:this.dataTable.endingTime,
+      startTime:this.strtTime,
+      endingTime:this.endingTime,
       runwayHeading:row.runwayHeading,
       aircraft:row.aircraft,
       secondEntrySector:row.secondEntrySector

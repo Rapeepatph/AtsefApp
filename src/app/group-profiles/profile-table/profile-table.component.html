@@ -1,0 +1,101 @@
+<!-- <div >
+  <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+  </div>
+  <div class="example-container mat-elevation-z8">
+  
+      <mat-table [dataSource]="dataSource" matSort>
+       
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+          <mat-cell *matCellDef="let row" > {{row.name}} </mat-cell>
+        </ng-container>
+    
+       
+        <ng-container matColumnDef="dataFrom">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> DataFrom </mat-header-cell>
+          <mat-cell *matCellDef="let row" > {{row.dataFrom}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dataTo">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> DataTo </mat-header-cell>
+          <mat-cell *matCellDef="let row" > {{row.dataTo}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+          <mat-cell *matCellDef="let row" > {{row.status}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button type="button" class="btn btn-outline-primary "  >Detail</button>
+            </mat-cell>
+          </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+
+      </mat-table>
+    
+      <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+    </div>
+</div>
+ -->
+ 
+<h4 class="display-4">List of Group Profile</h4>
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dataFrom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> DataFrom </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.dateFrom| date}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="dataTo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> DataTo </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.dateTo| date}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let row" > 
+        <button type="button" [class]="changedStyle(row.status)" (click)="changedStatus(row)" >
+              {{row.status?'Activate':'click to activate'}}
+        </button> 
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+      <mat-cell *matCellDef="let row" > 
+        <button type="button" class="btn btn-danger" (click)='deletedProfile(row)'>Delete</button>
+        <button type="button" class="btn btn-info" (click)='sendDataToTable(row)'>
+            <i class="fas fa-search"> </i>
+        </button>       
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+</div>
+
+<!-- <app-terminal-table [dataTable]="dataSelectedTable"></app-terminal-table> -->
+
+

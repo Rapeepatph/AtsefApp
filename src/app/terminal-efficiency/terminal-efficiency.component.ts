@@ -17,14 +17,16 @@ export class TerminalEfficiencyComponent implements OnInit {
   endingDate = new Date();
   airports = ['VTBS', 'VTBD', 'VTCC', 'VTSS', 'VTSP' , 'VTSM', 'VTSG' , 'VTCT'];
   airportsFormGroup: FormGroup;
+  ProfileName:string;
+  panelOpenState:boolean=false;
   //flightTable:any;
   //displayedColumns = [  'runwayHeading','aircraft','amount','arrival'];
   //dataSource: MatTableDataSource<TerminalTableModel>;
-  
   selectedAirports=[];
   dataSelectArrival:any;
   dataSelectedTable:any;
-
+  startDateSelected:any;
+  endingDateSelected:any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -45,7 +47,6 @@ export class TerminalEfficiencyComponent implements OnInit {
     var concatArrival = this.airports.join();   // required all airports
     this._flightProfileService.getTerminalByArrival(new Date(this.startDate).toISOString(),new Date(this.endingDate).toISOString(),concatArrival).subscribe(
       res=>{
-        console.log(res);
         for(var key in res){
           this.result= this.result.concat(res[key].listFlightGroups);
         }
@@ -78,19 +79,42 @@ export class TerminalEfficiencyComponent implements OnInit {
   // }
   sendDataToTable(item){
     this.dataSelectArrival = item.arrival;
-    this.dataSelectedTable=item;
+    this.dataSelectedTable=item.listFlightGroups;
+  this.startDateSelected=item.startTime;
+  this.endingDateSelected = item.endingTime;
   }
 
   saveData(name){
-    this._groupProfileService.postGroupProfile(name,new Date(this.startDate),new Date(this.endingDate))
+    this._groupProfileService.postGroupProfile(name,new Date(this.startDate),new Date(this.endingDate),0)
                               .subscribe(data=>{
-                                //console.log('groupdetail',this.result)
-                                console.log('data',data);
+                                this.result.forEach(obj=>{
+                                  obj.ProfileId=data.id;
+                                  obj.Predict = (obj.p80 - obj.p20);
+                                })
+                                var model = {
+                                  listModel:this.result
+                                }
+                                this.saveGroupStatistic(model);
                               },
-                            error=>{console.error('error from savedata',error)}
+                            //error=>{console.error('error from savedata',error)}
+                            error => {
+                              alert("Error saving data groupProfile name!"+",status code :"+ error.status+"("+error.statusText+")");
+                              console.error("Error saving data!",error);
+                            }
                             );
-                              
-                              
-                              
+  }
+  saveGroupStatistic(model){
+    this._groupProfileService.postGroupStatistic(model).subscribe(
+      data=>{
+        alert('Save success!');
+        this.ProfileName=''
+        this.panelOpenState=true;
+        window.scrollTo(0, 0);
+      },
+      error=>{
+        alert("Error saving data groupStatistics !"+",status code :"+ error.status+"("+error.statusText+")");
+        console.error("Error saving data!",error);
+      }
+    )
   }
 }

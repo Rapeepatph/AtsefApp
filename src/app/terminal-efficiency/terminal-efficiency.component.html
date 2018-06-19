@@ -1,40 +1,52 @@
-<h4 class="display-4">Terminal Efficiency</h4>
-<div class="row ">
-   
-        
-                <div class="col-md">
-                    <mat-form-field>
-                        <input matInput  [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="startDate">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
+<h4 class="display-4">Create Group Profile
+    <span class="fa-stack" aria-hidden="true" title="Create Group-Profile that used for benchmark.">
+    <i class="fa fa-info-circle fa-xs"></i>
+</span>
+</h4>
+<div class="card">
+    <div class="card-body">
+        <div class="row ">
+            <div class="col-md">
+                <mat-form-field>
+                    <input matInput  [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                 </mat-form-field>
+            </div>
+            <div class="col-md">
+                <mat-form-field>
+                    <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker1" placeholder="Choose a date" [(ngModel)]="endingDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+            </div>
+                        <!-- <div class="col-md">
+                            <div class="row">
+                                    <form   [formGroup]="airportsFormGroup" >
+                                         <div  *ngFor="let airport of airports; let i = index" class="form-check form-check-inline">
+                                                
+                                            <mat-checkbox (change)="onChange($event)" [value]="airport">{{airport}}</mat-checkbox>
+                                                
+                                        </div>
+                                    </form>
+                            </div>
+                                
+                        </div> -->
+            <div class="col-md">
+                <button type="button" class="btn btn-outline-primary btn-lg" (click)="searchFlight()">Search</button>
+            </div>
+            <div class="col-md">
+                <div class="float-right">
+                    <button type="button" class="btn btn-info btn-lg" routerLink="/groupProfile" title="Link for Select Active Benchmark">
+                        <i class="far fa-edit"> Edit</i>
+                    </button>
                 </div>
-                <div class="col-md">
-                    <mat-form-field>
-                        <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker1" placeholder="Choose a date" [(ngModel)]="endingDate">
-                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                        <mat-datepicker #picker1></mat-datepicker>
-                      </mat-form-field>
-                </div>
-                <!-- <div class="col-md">
-                    <div class="row">
-                            <form   [formGroup]="airportsFormGroup" >
-                                 <div  *ngFor="let airport of airports; let i = index" class="form-check form-check-inline">
-                                        
-                                    <mat-checkbox (change)="onChange($event)" [value]="airport">{{airport}}</mat-checkbox>
-                                        
-                                </div>
-                            </form>
-                    </div>
-                        
-                </div> -->
-                <div class="col-md">
-                    <button type="button" class="btn btn-outline-primary btn-lg" (click)="searchFlight()">Search</button>
-                </div>
-           
-        
-   
+            </div>
+        </div>
+    </div>
 </div>
+
+
 <div class="row " >
     <!-- <div class="col-md" *ngFor="let item of selectedAirports" >
         <button type="button" class="btn btn-outline-primary btn-lg" (click)="sendDataToTable(item)">{{item.arrival}}</button>
@@ -45,51 +57,37 @@
 </div>
 
 <div class="row" *ngIf="dataSelectArrival">
-        <button type="button" class="btn btn-outline-primary btn-lg" (click)="saveData('whwaterere')">Save</button>
+        
     <div class="col-md">
         <b>Arrival :</b><p>{{dataSelectArrival}}</p>
-        <b>From Date :</b><p>{{startDate}}</p>
-        <b>To Date :</b><p>{{endingDate}}</p>
+        <b>From Date :</b><p>{{startDate| date}}</p>
+        <b>To Date :</b><p>{{endingDate| date}}</p>
     </div>
     
 </div>
 <hr>
-<app-terminal-table [dataTable]="dataSelectedTable"></app-terminal-table>
-<!-- <div class="example-header">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
-</div>
-<div class="example-container mat-elevation-z8">
 
-    <mat-table [dataSource]="dataSource" matSort>
-     
-      <ng-container matColumnDef="runwayHeading">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> RunwayHeading </mat-header-cell>
-        <mat-cell *matCellDef="let row" > {{row.runwayHeading}} </mat-cell>
-      </ng-container>
-  
-     
-      <ng-container matColumnDef="aircraft">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Aircraft </mat-header-cell>
-        <mat-cell *matCellDef="let row" > {{row.aircraft}} </mat-cell>
-      </ng-container>
-  
-     
-      <ng-container matColumnDef="amount">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-          <mat-cell *matCellDef="let row" > {{row.amount}} </mat-cell>
-      </ng-container>
-  
-       
-      <ng-container matColumnDef="arrival">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Arrival </mat-header-cell>
-          <mat-cell *matCellDef="let row" > {{row.arrival}} </mat-cell>
-      </ng-container>
-  
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
-    </mat-table>
-  
-    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
-  </div> -->
+<app-terminal-table [dataTable]="dataSelectedTable" [strtTime]="startDateSelected" [endingTime]="endingDateSelected"></app-terminal-table>
+
+
+<mat-accordion class="example-headers-align" *ngIf="dataSelectArrival" >
+        <mat-expansion-panel [expanded]="panelOpenState" >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <b>Save This Profile</b>
+            </mat-panel-title>
+            <mat-panel-description>
+                Click Here!
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+      
+          <mat-form-field>
+            <input matInput placeholder="Name of Profile" [(ngModel)]="ProfileName">
+          </mat-form-field>
+          <div class="row">
+            <button type="button" class="btn btn-outline-success btn-lg" (click)="saveData(ProfileName)" [disabled]="!ProfileName">Save</button>
+          </div>
+         
+        </mat-expansion-panel>
+</mat-accordion>
+      
